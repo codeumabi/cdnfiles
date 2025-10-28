@@ -1,21 +1,24 @@
-// main.js — central loader for all scripts
+// main.js — central loader for album image scripts
 
 (function () {
-  const base = "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/albumimage/";
+  const baseScripts = "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/";
+  const baseAlbum = "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/albumimage/";
 
-  const scripts = [
-    "state.js",
-    "utils.js",
-    "canvas.js",
-    "export.js",
-    "gallery.js",
-    "app.js",
+  const scriptsToLoad = [
+    { src: baseScripts + "font-loader.js" },
+    { src: baseAlbum + "state.js" },
+    { src: baseAlbum + "utils.js" },
+    { src: baseAlbum + "canvas.js" },
+    { src: baseAlbum + "export.js" },
+    { src: baseAlbum + "gallery.js" },
+    { src: baseAlbum + "app.js" },
+    { src: baseScripts + "page.js" }
   ];
 
-  scripts.forEach(file => {
+  scriptsToLoad.forEach(script => {
     const s = document.createElement("script");
-    s.src = base + file;
-    s.async = false; // load in order, change to true if order doesn't matter
+    s.src = script.src;
+    s.async = false; // load in order
     document.head.appendChild(s);
   });
 })();
