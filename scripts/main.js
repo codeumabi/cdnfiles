@@ -1,28 +1,26 @@
-<!-- main.js — dynamic loader for all scripts -->
+<!-- main.js — dynamic loader with absolute CDN paths -->
 <script>
 (function () {
-  const base = "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/";
-
   const scripts = [
-    "font-loader.js",
-    "presets.js",
-    "utils.js",
-    "state.js",
-    "canvas.js",
-    "export.js",
-    "gallery.js",
-    "app.js",
-    "page.js"
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/font-loader.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/presets.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/utils.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/state.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/canvas.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/export.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/gallery.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/app.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/page.js"
   ];
 
-  // Load scripts sequentially (preserves dependency order)
+  // Load scripts in sequence (ensures dependencies work correctly)
   function loadSequentially(index = 0) {
     if (index >= scripts.length) return;
-    const s = document.createElement("script");
-    s.src = base + scripts[index];
-    s.defer = true;
-    s.onload = () => loadSequentially(index + 1);
-    document.head.appendChild(s);
+    const script = document.createElement("script");
+    script.src = scripts[index];
+    script.defer = true;
+    script.onload = () => loadSequentially(index + 1);
+    document.head.appendChild(script);
   }
 
   loadSequentially();
