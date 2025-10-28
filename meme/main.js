@@ -1,21 +1,24 @@
-// main.js — central loader for all scripts
+// main.js — central loader for meme scripts
 
 (function () {
-  const base = "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/";
+  const baseScripts = "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/";
+  const baseMeme = "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/";
 
-  const scripts = [
-    "state.js",
-    "utils.js",
-    "canvas.js",
-    "export.js",
-    "gallery.js",
-    "app.js",
+  const scriptsToLoad = [
+    { src: baseScripts + "font-loader.js" },
+    { src: baseMeme + "state.js" },
+    { src: baseMeme + "utils.js" },
+    { src: baseMeme + "canvas.js" },
+    { src: baseMeme + "export.js" },
+    { src: baseMeme + "gallery.js" },
+    { src: baseMeme + "app.js" },
+    { src: baseScripts + "page.js" }
   ];
 
-  scripts.forEach(file => {
+  scriptsToLoad.forEach(script => {
     const s = document.createElement("script");
-    s.src = base + file;
-    s.async = false; // load in order, change to true if order doesn't matter
+    s.src = script.src;
+    s.async = false; // load in order
     document.head.appendChild(s);
   });
 })();
