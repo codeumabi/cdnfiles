@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/utils.js",
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/canvas.js",
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/export.js",
-    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/gallery/canvas.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/canvas.js",
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/app.js",
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/page.js"
   ];
