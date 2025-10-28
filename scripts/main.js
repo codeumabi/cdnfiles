@@ -1,6 +1,6 @@
-<!-- main.js — dynamic loader with absolute CDN paths -->
+<!-- main.js — fully reliable loader with absolute CDN paths -->
 <script>
-(function () {
+document.addEventListener("DOMContentLoaded", function () {
   const scripts = [
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/font-loader.js",
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/presets.js",
@@ -13,16 +13,14 @@
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/page.js"
   ];
 
-  // Load scripts in sequence (ensures dependencies work correctly)
-  function loadSequentially(index = 0) {
-    if (index >= scripts.length) return;
-    const script = document.createElement("script");
-    script.src = scripts[index];
-    script.defer = true;
-    script.onload = () => loadSequentially(index + 1);
-    document.head.appendChild(script);
+  function loadScript(i) {
+    if (i >= scripts.length) return;
+    const s = document.createElement("script");
+    s.src = scripts[i];
+    s.onload = () => loadScript(i + 1);
+    document.body.appendChild(s);
   }
 
-  loadSequentially();
-})();
+  loadScript(0);
+});
 </script>
