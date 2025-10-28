@@ -4,21 +4,21 @@
   const base = "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/";
 
   const scripts = [
-    "app.js",
+    "font-loader.js",
+    "presets.js",
+    "utils.js",
+    "state.js",
     "canvas.js",
     "export.js",
-    "font-loader.js",
     "gallery.js",
-    "page.js",
-    "presets.js",
-    "state.js",
-    "utils.js"
+    "app.js",
+    "page.js"
   ];
 
   scripts.forEach(file => {
     const s = document.createElement("script");
     s.src = base + file;
-    s.async = false; // load in order, change to true if order doesn't matter
+    s.async = false; // load in order
     document.head.appendChild(s);
   });
 })();
