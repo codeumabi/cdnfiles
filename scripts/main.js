@@ -1,5 +1,5 @@
-<!-- main.js — fully reliable loader with absolute CDN paths -->
-<script>
+<!-- main.js — fully reliable sequential loader -->
+
 document.addEventListener("DOMContentLoaded", function () {
   const scripts = [
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/font-loader.js",
@@ -13,14 +13,17 @@ document.addEventListener("DOMContentLoaded", function () {
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/page.js"
   ];
 
-  function loadScript(i) {
-    if (i >= scripts.length) return;
-    const s = document.createElement("script");
-    s.src = scripts[i];
-    s.onload = () => loadScript(i + 1);
-    document.body.appendChild(s);
+  async function loadScriptsSequentially() {
+    for (let i = 0; i < scripts.length; i++) {
+      await new Promise((resolve, reject) => {
+        const s = document.createElement("script");
+        s.src = scripts[i];
+        s.onload = resolve;
+        s.onerror = () => reject(new Error(`Failed to load ${scripts[i]}`));
+        document.body.appendChild(s);
+      });
+    }
   }
 
-  loadScript(0);
+  loadScriptsSequentially().catch(err => console.error(err));
 });
-</script>
