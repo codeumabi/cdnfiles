@@ -401,8 +401,16 @@ document.addEventListener('click', (e) => {
 let deferredPrompt;
 
 window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
+  // Just store the event — don’t preventDefault yet
   deferredPrompt = e;
+  showInstallBanner(); // Call your custom banner
+});
+
+function showInstallBanner() {
+  if (!deferredPrompt) return;
+
+  // Now manually prevent default before showing banner
+  deferredPrompt.preventDefault();
 
   // Create banner container
   const banner = document.createElement("div");
@@ -494,4 +502,4 @@ window.addEventListener("beforeinstallprompt", (e) => {
     installBanner.style.animation = "fadeOut 0.5s ease forwards";
     setTimeout(() => installBanner.remove(), 500);
   });
-});
+}
