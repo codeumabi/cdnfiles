@@ -1,24 +1,28 @@
-// main.js — central loader for meme scripts
+// main.js — fully reliable sequential loader for meme scripts
 
-(function () {
-  const baseScripts = "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/";
-  const baseMeme = "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/";
-
-  const scriptsToLoad = [
-    { src: baseScripts + "font-loader.js" },
-    { src: baseMeme + "state.js" },
-    { src: baseMeme + "utils.js" },
-    { src: baseMeme + "canvas.js" },
-    { src: baseMeme + "export.js" },
-    { src: baseMeme + "gallery.js" },
-    { src: baseMeme + "app.js" },
-    { src: baseScripts + "page.js" }
+document.addEventListener("DOMContentLoaded", function () {
+  const scripts = [
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/font-loader.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/state.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/utils.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/canvas.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/export.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/gallery.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/meme/app.js",
+    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/page.js"
   ];
 
-  scriptsToLoad.forEach(script => {
-    const s = document.createElement("script");
-    s.src = script.src;
-    s.async = false; // load in order
-    document.head.appendChild(s);
-  });
-})();
+  async function loadScriptsSequentially() {
+    for (let i = 0; i < scripts.length; i++) {
+      await new Promise((resolve, reject) => {
+        const s = document.createElement("script");
+        s.src = scripts[i];
+        s.onload = resolve;
+        s.onerror = () => reject(new Error(`Failed to load ${scripts[i]}`));
+        document.body.appendChild(s);
+      });
+    }
+  }
+
+  loadScriptsSequentially().catch(err => console.error(err));
+});
