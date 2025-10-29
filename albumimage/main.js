@@ -1,6 +1,4 @@
-<!-- main.js — fully reliable sequential loader -->
-
-document.addEventListener("DOMContentLoaded", function () {
+(async function () {
   const scripts = [
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/albumimage/state.js",
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/albumimage/utils.js",
@@ -10,18 +8,13 @@ document.addEventListener("DOMContentLoaded", function () {
     "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/albumimage/app.js"
   ];
 
-  async function loadScriptsSequentially() {
-    for (let i = 0; i < scripts.length; i++) {
-      await new Promise((resolve, reject) => {
-        const s = document.createElement("script");
-        s.src = scripts[i];
-        s.onload = resolve;
-        s.onerror = () => reject(new Error(`Failed to load ${scripts[i]}`));
-        document.body.appendChild(s);
-      });
-    }
+  for (const src of scripts) {
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = () => reject(new Error(`Failed to load ${src}`));
+      document.head.appendChild(s);
+    });
   }
-
-  loadScriptsSequentially().catch(err => console.error(err));
-});
-
+})();
