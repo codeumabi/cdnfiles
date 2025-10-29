@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         await FontLoader.loadFonts();
     }
     
-    console.log('Album Cover Generator initialized');
+
     
     // Initialize components
     initCanvas();
@@ -474,7 +474,7 @@ function saveToAlbumGallery() {
         // Save to gallery
         const itemId = albumGalleryManager.saveToGallery(thumbnailDataUrl, stateToSave);
         
-        console.log('Album saved to gallery with ID:', itemId);
+       
     } catch (error) {
         console.error('Failed to save album to gallery:', error);
     }
