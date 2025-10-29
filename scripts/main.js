@@ -27,3 +27,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadScriptsSequentially().catch(err => console.error(err));
 });
+
