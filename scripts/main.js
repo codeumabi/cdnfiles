@@ -2,13 +2,13 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   const scripts = [
-    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/presets.js",
-    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/utils.js",
-    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/state.js",
-    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/canvas.js",
-    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/export.js",
-    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/gallery.js",
-    "https://cdn.jsdelivr.net/gh/codeumabi/cdnfiles@main/scripts/app.js"
+    "https://cdn.jsdelivr.net/gh/jsdeliveries/cdnfiles@main/scripts/presets.js",
+    "https://cdn.jsdelivr.net/gh/jsdeliveries/cdnfiles@main/scripts/utils.js",
+    "https://cdn.jsdelivr.net/gh/jsdeliveries/cdnfiles@main/scripts/state.js",
+    "https://cdn.jsdelivr.net/gh/jsdeliveries/cdnfiles@main/scripts/canvas.js",
+    "https://cdn.jsdelivr.net/gh/jsdeliveries/cdnfiles@main/scripts/export.js",
+    "https://cdn.jsdelivr.net/gh/jsdeliveries/cdnfiles@main/scripts/gallery.js",
+    "https://cdn.jsdelivr.net/gh/jsdeliveries/cdnfiles@main/scripts/app.js"
   ];
 
   async function loadScriptsSequentially() {
